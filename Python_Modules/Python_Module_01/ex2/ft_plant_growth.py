@@ -1,30 +1,29 @@
-class Plants():
-    def __init__(self, name, height, age):
+class Plant():
+    def __init__(self, name: str, height: int, ages: int) -> None:
         self.name = name
         self.height = height
-        self.age_day = age
+        self.ages = ages
 
-    def print_plant(self):
-        print(f"{self.name.capitalize()}: {self.height}cm, {self.age_day} days old")
+    def grow(self, value: int) -> None:
+        self.height += value
 
-    def age(self, grow_rate):
-        self.age_day += grow_rate
+    def age(self, value: int) -> None:
+        self.ages += value
 
-    def grow(self, grow_rate):
-        self.height += grow_rate
+    def get_info(self) -> None:
+        print(f"{self.name}: {self.height}cm, {self.ages} days old")
 
-    def get_info(self, day):
-        print(f"=== Day {day} ===")
-        self.print_plant()
-    
-    def simulation(self, grow_rate):
-        self.age(grow_rate)
-        self.grow(grow_rate)
-        self.grow_rate = grow_rate
+    def simulation(self, value: int) -> None:
+        print(f"=== Day {1} ===")
+        self.get_info()
+        for i in range(2, 8):
+            self.grow(value)
+            self.age(1)
+        print(f"=== Day {7} ===")
+        self.get_info()
+        print(f"Growth this week: +{value * 6}cm")
+
 
 if __name__ == "__main__":
-    rose = Plants("rose", 25, 30)
-    rose.get_info(1)
-    rose.simulation(6)
-    rose.get_info(7)
-    print(f"Growth this week: +{rose.grow_rate}cm")
+    rose = Plant("Rose", 25, 30)
+    rose.simulation(1)

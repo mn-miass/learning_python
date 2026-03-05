@@ -1,54 +1,56 @@
-def error_message(variable, value):
-    if variable == "height":
-        print(f"\nInvalid operation attempted: {variable} {value}cm [Rjected]")
-    elif variable == "age":
-        print(f"Invalid operation attempted: {variable} {value}day [Rjected]")
-    print(f"Security: Negative {variable} rejected\n")
+def rejected_message(name: str, value: int) -> None:
+    print(f"\nInvalid operation attempted: {name} {value}cm [REJECTED]")
+    print(f"Security: Negative {name} rejected\n")
 
 
-class SecurePlant():
-    def __init__(self, height, age, name):
-        if height < 0:
-            error_message("height", height)
-        elif age < 0:
-            error_message("age", age)
-        else:
+class SecurePlants():
+    def __init__(self,
+                 name: str, height: int, age: int) -> None:
+
+        if height >= 0 and age >= 0:
+            self.__name = name
             self.__height = height
             self.__age = age
-            self.__name = name
-            print(f"Plant created: {self.__name.capitalize()}")
-
-    def set_height(self, value):
-        if value < 0:
-            error_message("height", value)
+            print(f"Plant created: {self.__name}")
         else:
+            if height < 0:
+                self.__name = name
+                self.__age = age
+                self.__height = 0
+                rejected_message("height", height)
+            if age < 0:
+                self.__name = name
+                self.__age = 0
+                if self.__height != 0:
+                    self.__height = height
+                rejected_message("age", age)
+
+    def set_height(self, value: int) -> None:
+        if value >= 0:
             self.__height = value
-            print(f"Height updated: {self.__height} cm [OK]")
-
-    def set_age(self, value):
-        if value < 0:
-            error_message("age", value)
+            print(f"Height updated: {self.__height}cm [OK]")
         else:
+            rejected_message("height", value)
+
+    def set_age(self, value: int) -> None:
+        if value >= 0:
             self.__age = value
             print(f"Age updated: {self.__age} days [OK]")
-            
-    
-    def get_height(self):
+        else:
+            rejected_message("age", value)
+
+    def get_height(self) -> int:
         return self.__height
 
-    def get_age(self):
+    def get_age(self) -> int:
         return self.__age
 
-    def get_name(self):
-        return self.__name
+    def get_info(self) -> None:
+        print(f"Current plant: {self.__name} ({self.get_height()}cm"
+              f", {self.get_age()} days)")
 
-def print_plant(plant):
-     print(f"Current plant: {plant.get_name().capitalize()} ({plant.get_height()}cm, {plant.get_age()}days)")
 
 if __name__ == "__main__":
-    rose = SecurePlant(25, 30, "rose")
-    rose.set_height(25)
-    rose.set_age(30)
+    rose = SecurePlants("Rose", 25, 30)
     rose.set_height(-5)
-    print_plant(rose)
-    
+    rose.get_info()
