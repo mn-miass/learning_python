@@ -17,7 +17,7 @@ class WaterError(GardenError):
         GardenError.__init__(self, msg)
 
 
-def test_errors() -> None:
+def test_custom_errors() -> None:
     testing_msg("PlantError")
     try:
         raise PlantError()
@@ -41,5 +41,5 @@ def test_errors() -> None:
 
 if __name__ == "__main__":
     print("=== Custom Garden Errors Demo ===\n")
-    test_errors()
+    test_custom_errors()
     print("All custom error types work correctly!")

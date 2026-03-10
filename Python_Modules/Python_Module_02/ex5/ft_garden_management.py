@@ -68,7 +68,7 @@ class GardenManager():
             print(f"Watering {plant.name} - success")
         print("Closing watering system (cleanup)\n")
 
-    def check_plant(self) -> None:
+    def check_plant_health(self) -> None:
         print("Checking plant health...")
         try:
             for plant in self.list:
@@ -92,7 +92,7 @@ def test_garden_management() -> None:
     plants = GardenManager()
     plants.add_plants([tomato, lettuce, empty])
     plants.water_plant()
-    plants.check_plant()
+    plants.check_plant_health()
 
     print("Testing error recovery")
     try:
