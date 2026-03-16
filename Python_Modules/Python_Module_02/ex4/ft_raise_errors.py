@@ -9,7 +9,7 @@ def check_plant_health(plant_name: str, water_level: int,
 
     if (water_level > 10):
         raise ValueError(f"Error: Water level {water_level} "
-                         "is too high (max 10)")
+                         "is too high (max_value 10)")
 
     if (water_level < 1):
         raise ValueError(f"Error: Water level {water_level} "

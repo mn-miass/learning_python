@@ -18,7 +18,7 @@ class WaterError(GardenError):
         if value > 10:
             GardenError.__init__(self, msg="Error checking lettuce: Water "
                                  f"level {value}"
-                                 " is too high (max 10)")
+                                 " is too high (max_value 10)")
         elif value < 1:
             GardenError.__init__(self, msg="Error checking lettuce: "
                                  f"Water level {value}"
@@ -32,7 +32,7 @@ class SunlightError(GardenError):
                                  " is too low (min 2)")
         elif value < 2:
             GardenError.__init__(self, msg=f"Error: Sunlight hours {value}"
-                                 " is too high (max 12)")
+                                 " is too high (max_value 12)")
 
 
 class PlantManager():

@@ -10,7 +10,7 @@ def check_temperature(tmp_str: str) -> None | int:
             print(f"Temperature {tmp_int}°C is perfect for plants!\n")
             return tmp_int
         elif (tmp_int > 40):
-            raise ValueError(f"{tmp_int}°C is too hot for plants (max 40°C)")
+            raise ValueError(f"{tmp_int}°C is too hot for plants (max_value 40°C)")
         else:
             raise ValueError(f"{tmp_int}°C is too cold for plants (min 0°C)")
     except ValueError as e:

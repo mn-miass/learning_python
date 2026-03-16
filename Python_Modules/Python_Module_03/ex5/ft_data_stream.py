@@ -35,7 +35,6 @@ def print_all(data: list) -> None:
     gen = print_one(data)
     for event in gen:
         print(event)
-        next(gen)
     print()
 
 
