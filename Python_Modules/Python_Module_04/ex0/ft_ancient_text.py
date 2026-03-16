@@ -5,7 +5,7 @@ if __name__ == "__main__":
         print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===\n")
         print(f"Accessing Storage Vault: {file_name}")
         file = open(file_name, "r")
-        lines = file.readlines()
+        lines = file.read()
 
     except FileNotFoundError:
         print("File not found")
@@ -13,7 +13,6 @@ if __name__ == "__main__":
     else:
         print("Connection established...\n")
         print("RECOVERED DATA:")
-        for line in lines:
-            print(line, end="")
-        print("\n\nData recovery complete. Storage unit disconnected.")
+        print(lines)
+        print("\nData recovery complete. Storage unit disconnected.")
         file.close()
