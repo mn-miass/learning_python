@@ -10,13 +10,12 @@ if __name__ == "__main__":
             print("\nSECURE EXTRACTION:")
             print(lines)
 
-        file_name = "security_protocols.txt"
-        with open(file_name, "r") as file:
+        with open(file_name, "w") as file:
             print("\nSECURE PRESERVATION:")
-            line = file.read()
-            print(line)
+            file.write("[CLASSIFIED] New security protocols archived")
+            print("[CLASSIFIED] New security protocols archived")
             print("Vault automatically sealed upon completion\n")
 
         print("All vault operations completed with maximum security.")
     except FileNotFoundError:
-        print("\nFile not found")
+        print("File not found")
