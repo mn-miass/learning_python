@@ -22,10 +22,14 @@ class NumericProcessor(DataProcessor):
             if self.validate(data) is False:
                 raise ValueError("Validation: Numeric data verification"
                                  " failed")
+            if isinstance(data, int):
+                return (f"Processed 1 numeric value, \
+                    sum={data}, avg={data}")
+
             for element in data:
                 sum_data += element
-            return (f"Processed {len(data)} numeric values, "
-                    f"sum={sum_data}, avg={sum_data/len(data)}")
+            return (f"Processed {len(data)} numeric values, \
+                sum={sum_data}, avg={sum_data/len(data)}")
 
         except ValueError as e:
             print(e)
@@ -33,6 +37,8 @@ class NumericProcessor(DataProcessor):
 
     def validate(self, data: Any) -> bool:
         try:
+            if isinstance(data, int):
+                return True
             if isinstance(data, list) is False:
                 return False
             for element in data:
@@ -92,7 +98,7 @@ if __name__ == "__main__":
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===\n")
 
     print("Initializing Numeric Processor...")
-    data = [1, 2, 3, 4, 5]
+    data = 1
     print(f"Processing data: {data}")
     numeric = NumericProcessor()
     if numeric.validate(data):

@@ -46,7 +46,6 @@ class SensorStream(DataStream):
                 name, value = element.split(":")
                 data_sum += float(value)
             self.last_avg = data_sum / len(data)
-            self.processed_count += 1
             sen = f"Sensor analysis: {len(data_batch)} readings processed"
             f", avg={data_need} {self.last_avg}"
             if data_need == "temp":
@@ -159,12 +158,12 @@ class EventStream(DataStream):
                 self.error_count += 1
                 raise ValueError
             if len(data_error) == 0:
-                sen = f"Event analysis: {len(data_batch)} events, "
-                "no error detected"
+                sen = f"Event analysis: {len(data_batch)} events, \
+                no error detected"
             else:
                 DataStream.error_count += 1
-                sen = f"Event analysis: {len(data_batch)} events, "
-                f"{len(data_error)} error detected"
+                sen = f"Event analysis: {len(data_batch)} events, \
+                {len(data_error)} error detected"
             return sen + "\n"
         except ValueError:
             return "INVALID VALUE WAS GIVEN\n"
@@ -196,7 +195,8 @@ class EventStream(DataStream):
 class StreamProcessor():
     counter = 0
 
-    def __init__(self, list_obj: list[str], list_data: list[str]) -> None:
+    def __init__(self, list_obj: list[DataStream], list_data:
+                 list[Any]) -> None:
         self.list_obj = list_obj
         self.list_data = list_data
         self.batch = StreamProcessor.counter
@@ -223,7 +223,7 @@ class StreamProcessor():
 
         i = 0
         while i < len(self.list_obj):
-            list_obj[i].process_batch(list_data[i])
+            self.list_obj[i].process_batch(self.list_data[i])
             value = list_obj[i].get_stats()
             print(f"- {value['name']} data: {value['count']} "
                   f"{value['act']} processed")
@@ -245,7 +245,7 @@ if __name__ == "__main__":
     event_a = EventStream("EVENT_001")
 
     list_obj = [sensor_a, transaction_a, event_a]
-    list_data = [["tmp:22.5", "humidity:65", "pressure:1013"],
+    list_data = [["temp:22.5", "humidity:65", "pressure:1013"],
                  ["buy:100", "sell:150", "buy:75"],
                  ["login", "error", "logout"]]
 
