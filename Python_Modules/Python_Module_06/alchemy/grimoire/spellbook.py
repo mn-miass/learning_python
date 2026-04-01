@@ -1,5 +1,7 @@
 def record_spell(spell_name: str, ingredients: str) -> str:
-    valid = ["fire", "water", "air", "earth"]
-    if ingredients.lower in valid:
-        return f"Spell recorded: {spell_name} ([validation_result])"
-    return f"Spell rejected: {spell_name} ([validation_result])"
+    from .validator import validate_ingredients
+    result = validate_ingredients(ingredients)
+    if "invalid" in result.lower():
+        return f"Spell rejected: {spell_name} ({result})"
+    else:
+        return f"Spell recorded: {spell_name} ({result})"
