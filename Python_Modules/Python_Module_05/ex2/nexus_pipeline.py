@@ -105,14 +105,14 @@ class OutputStage():
     def process(self, data: Any) -> Any:
         if data[0] == "json":
             print(f"Output: Processed {data[1]} reading: "
-                  "{data[2]}°{data[3]}{data[4]}\n")
+                  f"{data[2]}°{data[3]}{data[4]}\n")
 
         elif data[0] == "csv":
             print(f"Output: {data[1]}\n")
 
         else:
             print(f"Output: Stream summary: {data[1]} "
-                  "readings, avg: {data[2]}°C\n")
+                  f"readings, avg: {data[2]}°C\n")
 
 
 class JSONAdapter(ProcessingPipeline):

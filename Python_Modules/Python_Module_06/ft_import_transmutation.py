@@ -1,5 +1,4 @@
-import alchemy.elements
-from alchemy.elements import create_fire
+from alchemy.elements import create_earth
 from alchemy.potions import healing_potion as heal
 from alchemy.elements import create_fire, create_water
 from alchemy.potions import strength_potion
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     print("\nMethod 4 - Multiple imports:")
     try:
         print("create_earth(): ", end="")
-        print(alchemy.elements.create_earth())
+        print(create_earth())
     except AttributeError:
         print("AttributeError - not exposed")
 
@@ -47,4 +46,3 @@ if __name__ == "__main__":
         print("AttributeError - not exposed")
 
     print("\nAll import transmutation methods mastered!")
-
