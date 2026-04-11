@@ -1,8 +1,9 @@
 from ex0 import FlameFactory, AquaFactory
+from ex0.factory import CreatureFactory
 from typing import List
 
 
-def create(Factories: List[FlameFactory | AquaFactory]) -> None:
+def create(Factories: List[CreatureFactory]) -> None:
     try:
         for factory in Factories:
             print("Testing factory")
@@ -26,7 +27,7 @@ def create(Factories: List[FlameFactory | AquaFactory]) -> None:
             base = factory.create_base()
             print(base.attack())
     except BaseException:
-        print("")
+        print("Error happend")
 
 
 if __name__ == "__main__":

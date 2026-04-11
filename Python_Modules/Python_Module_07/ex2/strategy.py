@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from ex0.creature import Creature
 from ex1.capability import TransformCapability, HealCapability
-from typing import List
+from typing import List, cast
 
 
 class BattleStrategy(ABC):
@@ -29,9 +29,10 @@ class NormalStrategy(BattleStrategy):
 
 
 class AggressiveStrategy(BattleStrategy):
-    def act(self, creature: TransformCapability) -> List[str]:
+    def act(self, creature: Creature) -> List[str]:
+        tc = cast(TransformCapability, creature)
         if self.is_valid(creature):
-            return [creature.transform(), creature.attack(), creature.revert()]
+            return [tc.transform(), creature.attack(), tc.revert()]
         raise ValueError(f"Invalid Creature {creature.name}"
                          "for this aggressive strategy")
 
@@ -43,8 +44,9 @@ class AggressiveStrategy(BattleStrategy):
 
 class DefensiveStrategy(BattleStrategy):
     def act(self, creature: Creature) -> List[str]:
+        hc = cast(HealCapability, creature)
         if self.is_valid(creature):
-            return [creature.attack(), creature.heal()]
+            return [creature.attack(), hc.heal()]
         raise ValueError(f"Invalid Creature {creature.name}"
                          "for this aggressive strategy")
 
