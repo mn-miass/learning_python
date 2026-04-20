@@ -46,7 +46,7 @@ def main() -> None:
         invalid_station = SpaceStation(
             station_id="SS02",
             name="Orbital Station Beta",
-            crew_size=210,
+            crew_size=10,
             power_level=85.5,
             oxygen_level=92.0,
             last_maintenance=datetime(2024, 5, 20, 14, 30),
