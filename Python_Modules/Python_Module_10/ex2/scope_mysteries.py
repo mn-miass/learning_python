@@ -4,7 +4,7 @@ from collections.abc import Callable
 def mage_counter() -> Callable:
     count = 0
 
-    def counter():
+    def counter() -> int:
         nonlocal count
         count += 1
         return count
@@ -14,7 +14,7 @@ def mage_counter() -> Callable:
 def spell_accumulator(initial_power: int) -> Callable:
     power = initial_power
 
-    def acumulation(added_power):
+    def acumulation(added_power: int) -> int:
         nonlocal power
         power += added_power
         return power
@@ -22,7 +22,7 @@ def spell_accumulator(initial_power: int) -> Callable:
 
 
 def enchantment_factory(enchantment_type: str) -> Callable:
-    def enhantement(name):
+    def enhantement(name: str) -> str:
         return enchantment_type + " " + name
     return enhantement
 
@@ -30,10 +30,10 @@ def enchantment_factory(enchantment_type: str) -> Callable:
 def memory_vault() -> dict[str, Callable]:
     vault = {}
 
-    def store(key, value):
+    def store(key: str, value: int) -> None:
         vault[key] = value
 
-    def recall(key):
+    def recall(key: str) -> dict:
         try:
             return vault[key]
         except KeyError:

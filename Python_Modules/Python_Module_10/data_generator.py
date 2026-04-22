@@ -172,7 +172,7 @@ class FuncMageDataGenerator:
         print()
 
 
-def main():
+def main() -> None:
     """Interactive data generator for FuncMage Chronicles."""
     print("🧙‍♀️ FuncMage Chronicles - Data Generator Helper 🧙‍♂️")
     print("=" * 50)

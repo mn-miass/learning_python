@@ -9,12 +9,12 @@ def heal(target: str, power: int) -> str:
     return f"Heal restores {power} for {target} HP"
 
 
-def base_spell(target, power):
+def base_spell(target: str, power: int) -> str:
     return f"Original: {target}, Amplifier: {power}"
 
 
 def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
-    def combine(target, power):
+    def combine(target: str, power: int) -> str:
         spell_1 = spell1(target, power)
         spell_2 = spell2(target, power)
         return spell_1 + ", " + spell_2
@@ -22,27 +22,27 @@ def spell_combiner(spell1: Callable, spell2: Callable) -> Callable:
 
 
 def power_amplifier(base_spell: Callable, multiplier: int) -> Callable:
-    def amplifier(target, power):
+    def amplifier(target: str, power: int) -> Callable:
         return base_spell(target, power*multiplier)
     return amplifier
 
 
 def conditional_caster(condition: Callable, spell: Callable) -> Callable:
-    def caster(target, power):
+    def caster(target: str, power: int) -> Callable | str:
         if condition(target, power):
             return spell(target, power)
         return "Spell fizzled"
     return caster
 
 
-def conditions(target, power):
+def conditions(target: str, power: int) -> bool:
     if isinstance(target, str) and isinstance(power, int):
         return True
     return False
 
 
 def spell_sequence(spells: list[Callable]) -> Callable:
-    def sequence(target, power):
+    def sequence(target: str, power: int) -> Callable:
         spells_list = []
         for spell in spells:
             spells_list.append(spell(target, power))
@@ -51,7 +51,6 @@ def spell_sequence(spells: list[Callable]) -> Callable:
 
 
 if __name__ == "__main__":
-    
     test_values = [19, 20, 11, 12]
     test_targets = ['Dragon', 'Goblin', 'Wizard', 'Knight']
     spells = [spell, heal]
